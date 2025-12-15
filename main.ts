@@ -8,11 +8,11 @@
 // constants and variables
 let finished: number = 1;
 let odometer: number = 65000;		// mileage of Car
-let oilChangeKM: number = 65000   // value since the last oil change 
+const oilChangeKM: number = 65000   // value since the last oil change 
 let carColor: string = "blue";	// color of Car
-let carModel: string = "Honda";	// model of Car
+const carModel: string = "Honda";	// model of Car
 let newMileage: number = 0.0;	// new mileage amount
-let gasCost: number[] = new Array(10);// cost of gas per fill up.
+const gasCost: number[] = new Array(10);// cost of gas per fill up.
 gasCost[0] = Number((74.00).toFixed(2));
 
 // Prompt user for what action they would like to perform 
@@ -37,7 +37,7 @@ while (finished === 1) {
   }
 
   if (userOperation === "d") {
-    let averageFillUp: number = displayCostToFillUp();
+    const averageFillUp: number = displayCostToFillUp();
     console.log(`The average cost of your fill ups was $ ${averageFillUp.toFixed(2)}`)
   }
 
@@ -73,8 +73,7 @@ function oilChange(mileage: number, oilChangeKM: number): boolean {
 
 function carStats(): string {
   // This function will return a string of: make,colour,odometer reading,cost of gas,and oil change KM
-  let finalCarStats: string;
-  finalCarStats = String(`Here are the statistics of your ${carColor} ${carModel}: \n the odometer reads ${odometer}\n the last time the oil was changed ${oilChangeKM}\n the gas cost is ${gasCost}\n the new mileage on your car is ${newMileage} km`); 
+  const finalCarStats: string = String(`Here are the statistics of your ${carColor} ${carModel}: \n the odometer reads ${odometer}\n the last time the oil was changed ${oilChangeKM}\n the gas cost is ${gasCost}\n the new mileage on your car is ${newMileage} km`);
   return finalCarStats
   // console.log(`Here are the statistics of your ${carColor} ${carModel}: \n the odometer reads ${odometer}\n the last time the oil was changed ${oilChangeKM}\n the gas cost is ${gasCost}\n the new mileage on your car is${newMileage}`)
 }
@@ -88,8 +87,7 @@ function wrapCar(): string {
 
 function drive(): number {
   // generate random number between 100 and 1000
-  let randomDistance: number; 
-  randomDistance = Math.floor(Math.random() * 1000) + 10;
+  const randomDistance: number = Math.floor(Math.random() * 1000) + 10; 
   // update odometer in main to original reading + random number
   odometer = odometer + randomDistance
   // return value to main and update mileage variable 
