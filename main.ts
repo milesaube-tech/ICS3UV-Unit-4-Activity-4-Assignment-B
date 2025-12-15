@@ -1,22 +1,22 @@
 /**
- * @author xxx
+ * @author Miles Aube
  * @version 1.0.0
- * @date 2025-xx-yy
+ * @date 2025-12-14
  * @fileoverview This program keeps track of car stats
  */
 
 // constants and variables
-let keepGoing: number = 1;
+let finished: number = 1;
 let odometer: number = 65000;		// mileage of Car
 let oilChangeKM: number = 65000   // value since the last oil change 
-let carColor: string = null;	// color of Car
-let carModel: string = null;	// model of Car
+let carColor: string = "blue";	// color of Car
+let carModel: string = "Honda";	// model of Car
 let newMileage: number = 0.0;	// new mileage amount
 let gasCost: number[] = new Array(10);// cost of gas per fill up.
-gasCost[0] = 74.00;
+gasCost[0] = Number((74.00).toFixed(2));
 
 // Prompt user for what action they would like to perform 
-while (keepGoing === 1) {
+while (finished === 1) {
   // User input 
   const userOperation = prompt("Congrats on your new car!\nWhat would you like to do? (select by typing the letter in the front of the action.)\na.drive\nb.fill up with gas\nc.change the colour of your car\nd.see how much it costs to fill up with gas\ne.is it time for an oil change?\nf.car details\ng.I'm done driving\n") || "";
 
@@ -54,7 +54,7 @@ while (keepGoing === 1) {
   }
 
   if (userOperation === "g") {
-    keepGoing = 0;
+    finished = 0;
   }
 }  
 
@@ -73,7 +73,10 @@ function oilChange(mileage: number, oilChangeKM: number): boolean {
 
 function carStats(): string {
   // This function will return a string of: make,colour,odometer reading,cost of gas,and oil change KM
-  console.log(`Here are the statistics of your ${carColor} ${carModel}: \n the odometer reads ${odometer}\n the last time the oil was changed ${oilChangeKM}\n the gas cost is ${gasCost}\n the new mileage on your car is${newMileage}`)
+  let finalCarStats: string;
+  finalCarStats = String(`Here are the statistics of your ${carColor} ${carModel}: \n the odometer reads ${odometer}\n the last time the oil was changed ${oilChangeKM}\n the gas cost is ${gasCost}\n the new mileage on your car is ${newMileage} km`); 
+  return finalCarStats
+  // console.log(`Here are the statistics of your ${carColor} ${carModel}: \n the odometer reads ${odometer}\n the last time the oil was changed ${oilChangeKM}\n the gas cost is ${gasCost}\n the new mileage on your car is${newMileage}`)
 }
 
 function wrapCar(): string {
@@ -93,7 +96,7 @@ function drive(): number {
   return randomDistance;
 }
 
-function fillUp(): number {
+function fillUp(): void {
   // prompt user how much they paid to fill up car
   const costOfGasAsString: string = prompt("How much did you pay to fill up your car?") || "no amount entered";
   const costOfGasAsNumber = parseFloat(costOfGasAsString || "0.00");
@@ -102,7 +105,7 @@ function fillUp(): number {
   while (gasCost[counter] > 0){
     counter++;
   }
-  gasCost[counter] = costOfGasAsNumber;
+  gasCost[counter] = Number(costOfGasAsNumber.toFixed(2));
 }
 
 function displayCostToFillUp(): number {
@@ -115,7 +118,7 @@ function displayCostToFillUp(): number {
     counter++;
   }
 // average cost based on fill ups done 
-  const averageFillUpCost: number = totalFillUpCost / (counter -1)
+  const averageFillUpCost: number = totalFillUpCost / (counter)
 // return average cost to main() to display 
   return averageFillUpCost
 }
